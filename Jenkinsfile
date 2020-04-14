@@ -30,7 +30,7 @@ pipeline {
       }
         stage('deploy'){
         steps {
-             sshPublisher(publishers: [sshPublisherDesc(configName: 'Docker-host', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker rmi -f holliday:v.${BUILD_NUMBER}; docker build -t calvin2019/holliday:v.${BUILD_NUMBER} .; docker push calvin2019/holliday:v.${BUILD_NUMBER} ; docker run -dit -p 8080:8080 calvin2019/holliday:v.${BUILD_NUMBER}', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'webapp/target', sourceFiles: '**/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)]) 
+             sshPublisher(publishers: [sshPublisherDesc(configName: 'Docker-host', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker rmi -f holliday:v.${BUILD_NUMBER}; docker build -t calvin2019/holliday:v.${BUILD_NUMBER} .; docker push calvin2019/holliday:v.${BUILD_NUMBER} ; docker run -dit -p 8081:8080 calvin2019/holliday:v.${BUILD_NUMBER}', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'webapp/target', sourceFiles: '**/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)]) 
            
            
         }
