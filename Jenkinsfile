@@ -30,7 +30,7 @@ pipeline {
       }
         stage('deploy'){
         steps {
-           sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible-host', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i /etc/ansible/hosts /etc/ansible/docker-image.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//etc//ansible', remoteDirectorySDF: false, removePrefix: 'webapp/target', sourceFiles: '**/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+           deploy adapters: [tomcat8(credentialsId: 'adminID', path: '', url: 'http://35.182.5.210:8080/')], contextPath: 'summer', war: '**/*.war'
            
            
         }
